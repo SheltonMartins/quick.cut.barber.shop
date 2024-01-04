@@ -4,26 +4,28 @@ interface TextFieldProps {
   title: string
   placeholder?: string
   value?: string
-  HandleOnTyping: (value: string) => void
+  htmlFor?: string
+  // HandleOnTyping: (value: string) => void
 }
 
 export function TextField({
   title,
   placeholder,
   value,
-  HandleOnTyping,
+  htmlFor,
+  // HandleOnTyping,
 }: TextFieldProps) {
-  function HandleChangeValue(event: React.ChangeEvent<HTMLInputElement>) {
-    HandleOnTyping(event.target.value)
-  }
+  // function HandleChangeValue(event: React.ChangeEvent<HTMLInputElement>) {
+  //   HandleOnTyping(event.target.value)
+  // }
 
   return (
     <TextFieldContainer>
-      <h3>{title}</h3>
+      <label htmlFor={htmlFor}>{title}</label>
       <TextFieldInput
         value={value}
         placeholder={placeholder}
-        onChange={HandleChangeValue}
+        // onChange={HandleChangeValue}
       />
     </TextFieldContainer>
   )
