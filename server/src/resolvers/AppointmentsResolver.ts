@@ -2,21 +2,11 @@ import {
     Arg,
     Ctx,
     Mutation,
-    Resolver,
     Query,
+    Resolver,
   } from 'type-graphql'
   import { Context } from '../../context'
   import { Appointments } from '../models/Appointments'
-
-// @ObjectType()
-//  class AppointmentWithUser {
-//     @Field()
-//     appointments: Appointments
-  
-//     @Field()
-//     user: User
-// }
-
   
 @Resolver()
 export class AppointmentsResolver {
@@ -52,6 +42,16 @@ export class AppointmentsResolver {
 
         if (!appointments) return null
 
+        return appointments
+    }
+
+    @Query(() => [Appointments])
+    async allAppointments (  
+        @Ctx() ctx: Context,
+    ): Promise<Appointments[]> {
+
+        const appointments = await ctx.prisma.appointments.findMany()
+        
         return appointments
     }
 }

@@ -47,7 +47,7 @@ export const Login = () => {
                 placeholder="********" 
                 {...register('password')}
             />
-            <SubmitButton type="submit">Entrar</SubmitButton> 
+            <SubmitButton disabled={false} type="submit">Entrar</SubmitButton> 
             </form>     
         </LoginContainer>
     )

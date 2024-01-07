@@ -22,30 +22,11 @@ export const Navbar = () => {
         }
     })
 
-
-    console.log(data?.setUserByToken.name)
-
     const logout = () => {
         sessionStorage.removeItem('token')
         // alert('Voce está deslogado.')
         navigate('/')
     }
-
-    // async function handleSetCurrentUser(token: string) {
-        
-    //     try {
-    //         const { data } = await navbar_response({
-    //           variables: {
-    //             token: token
-    //           },
-    //         })
-    //         console.log(data)
-
-    //       } catch (erro) {
-    //         alert('deu erro')
-    //       }
-
-    // }
 
     useEffect(()=>{
         setIsLogged(!!token)
@@ -64,7 +45,7 @@ export const Navbar = () => {
                 <ul>
                     {isLogged ? (
                         <>
-                            <li>Seja bem vindo! </li>
+                            <li>Seja bem vindo {data?.setUserByToken.name}! </li>
                             <li><Link to={`/Appointments/${data?.setUserByToken.id}`}>Compromissos</Link></li>
                             <ButtonNavBar onClick={logout}>Sair</ButtonNavBar>
                         </>

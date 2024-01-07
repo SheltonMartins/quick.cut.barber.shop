@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 export const NavbarContainer = styled.nav`
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 20px 0;
     
 
@@ -25,6 +25,7 @@ export const NavbarContainer = styled.nav`
 `
 
 export const LinksContainer = styled.div`
+    margin-left: 20px;
 `
 
 export const RegisterContainer = styled.div`

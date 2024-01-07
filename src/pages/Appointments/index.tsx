@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
 import { useAppointment } from "../../graphql/hooks/useAppointment"
-import { AppointmentItem, AppointmentItens, AppointmentsContainer } from "./style"
-import { useParams } from "react-router-dom"
-
+import { AppointmentItem, AnyAppointmentsAdvice, AppointmentItens, AppointmentsContainer, AppointmentsTitleContainer } from "./style"
+import { Link, useParams } from "react-router-dom"
+import INCLUDE_ICON from "/plus-circle.svg"
 
 export interface IAppointment{
-    id: string
+    id?: string
     name: string
     time: string
     date: string
@@ -44,22 +44,33 @@ export const Appointments = () => {
 
     return (
         <AppointmentsContainer>
+            <AppointmentsTitleContainer>
+                <Link to={`/NewAppointment/${params.slug}`}>
+                    <img src={INCLUDE_ICON} alt="plus" />Novo compromisso
+                </Link>
             <h1>Compromissos agendados</h1>
-                {Appointments.map(appointment => 
-                    <AppointmentItens key={appointment.id}>
-                        <AppointmentItem>
-                            <label>Data: </label>{appointment.date}
-                        </AppointmentItem>
-                        <AppointmentItem>
-                            <label>Horario: </label>{appointment.time}
-                        </AppointmentItem>
-                        <AppointmentItem>
-                            <label>Criado no dia: </label>{appointment.createdAt}
-                        </AppointmentItem>
-                        <AppointmentItem>
-                            <label>Observações: </label>{appointment.name}
-                        </AppointmentItem>
-                    </AppointmentItens>
+            </AppointmentsTitleContainer>
+            {Appointments.length == 0 && 
+                <AnyAppointmentsAdvice>
+                    Voce nao tem nenhum compromisso! 
+                    Para marcar conosco,  
+                    <Link to={`/NewAppointment/${params.slug}`}> clique aqui</Link>.
+                </AnyAppointmentsAdvice> }
+            {Appointments.map(appointment => 
+                <AppointmentItens key={appointment.id}>
+                    <AppointmentItem>
+                        <label>Data: </label>{appointment.date}
+                    </AppointmentItem>
+                    <AppointmentItem>
+                        <label>Horario: </label>{appointment.time}
+                    </AppointmentItem>
+                    <AppointmentItem>
+                        <label>Criado no dia: </label>{appointment.createdAt}
+                    </AppointmentItem>
+                    <AppointmentItem>
+                        <label>Observações: </label>{appointment.name}
+                    </AppointmentItem>
+                </AppointmentItens>
                 )}
         </AppointmentsContainer>
     )

@@ -9,10 +9,54 @@ export const AppointmentsContainer = styled.div`
     h1{
         margin: 20px;
     }
+
+    img{
+        margin: 0;
+        padding: 0;
+    }
 `
 
 export const AppointmentItem = styled.div`
+`
+export const AnyAppointmentsAdvice = styled.p`
+    margin: 100px;
+`
 
+export const AppointmentsTitleContainer = styled.div`
+    width: 90%;
+    display: flex;
+
+    a{
+        left: 0;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        color: black;
+        position: absolute;
+    }
+
+    h1{
+        position: ;
+        margin-right: auto;
+        margin-left: auto;
+    }
+`
+export const AppointmentsTitleButton = styled.button`
+
+    position: relative;
+    border: 1px solid red;
+    width: 150px;
+    height: 50px;
+    margin: 10px 0;
+    border-radius: 20px;
+    background-color: transparent;
+    margin-left: auto;
+    cursor: pointer;
+    transition: 0.2s;
+    &:hover{
+        background-color: red;
+        color: white;
+    }
 `
 
 export const AppointmentItens = styled.div`
@@ -25,6 +69,6 @@ export const AppointmentItens = styled.div`
     border: 2px solid red;
     background-color: transparent;
     border-radius: 5px;
-    margin-top: 10px;
+    margin: 10px;
     gap: 30px;
 `

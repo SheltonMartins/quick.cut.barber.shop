@@ -20,11 +20,11 @@ type Mutation {
   appointmentsById(usersId: String!): [Appointments!]!
   createAppointment(barberId: String!, date: String!, name: String!, time: String!): Appointments!
   createUser(email: String!, name: String!, password: String!, phone: String!): User!
-  localCreateUser(email: String!, name: String!, password: String!, phone: String!): [User!]!
   login(email: String!, password: String!): UserWithToken!
 }
 
 type Query {
+  allAppointments: [Appointments!]!
   setUserByToken(token: String!): User!
   users: [User!]!
 }

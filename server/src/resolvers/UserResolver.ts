@@ -41,22 +41,6 @@ export class UserResolver {
   //   return user
   // }
 
-  @Mutation(() => [User])
-  async localCreateUser(
-    @Arg('name') name: string,
-    @Arg('email') email: string,
-    @Arg('phone') phone: string,
-    @Arg('password') password: string,
-  ) {
-    const date = new Date()
-
-    const user = { id: '1', name, email, phone, password, createdAt: date }
-
-    this.data.push(user)
-
-    return this.data
-  }
-
   @Query(() => [User])
   async users(@Ctx() ctx: Context): Promise<User[]> {
     const allUsers = await ctx.prisma.users.findMany()
@@ -118,7 +102,5 @@ export class UserResolver {
     return user
 
   }
-
-  
 
 }

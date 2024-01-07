@@ -1,27 +1,41 @@
 import { styled } from 'styled-components'
 
-export const NewUserContainer = styled.div`
+export const NewAppointmentContainer = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 100px;
     padding-top: 20px;
-    
-    h2{
-        margin: 20px;
-    }
 
     form{
         width: 50%;
     }
 
-    span{
-        position: absolute;
-        top: 0;
+
+`
+
+export const RegisterSelect = styled.select`
+    border: 1px solid red;
+    height: 50px;
+    width: 100%;
+    background-color: transparent;
+    border-radius: 3px;
+    outline: none;
+    padding-left: 15px;
+    font-style: italic;
+    font-family: serif;
+    font-size: 18px;
+    transition: 0.5s;
+    margin-top: 5px;
+    margin-bottom: 15px;
+
+    &::placeholder {
+      font-style: italic;
+      color: ${(props) => props.theme['black']};
+      font-family: serif;
+      font-size: 18px;
     }
-
-
 `
 
 export const RegisterInput = styled.input`
@@ -38,8 +52,6 @@ export const RegisterInput = styled.input`
     transition: 0.5s;
     margin-top: 5px;
     margin-bottom: 15px;
-    overflow: hidden;
-    -moz-appearance: textfield;
 
     &::placeholder {
       font-style: italic;
@@ -47,8 +59,6 @@ export const RegisterInput = styled.input`
       font-family: serif;
       font-size: 18px;
     }
-
-
 `
 
 
@@ -67,7 +77,7 @@ export const SubmitButton = styled.button`
     }
 `
 
-export const AdviceFromValidation = styled.p`
+export const NewAppointmentWarnig = styled.p`
     font-style: italic;
     font-size: 10px;
     color: red;
