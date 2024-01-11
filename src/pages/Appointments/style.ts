@@ -10,10 +10,6 @@ export const AppointmentsContainer = styled.div`
         margin: 20px;
     }
 
-    img{
-        margin: 0;
-        padding: 0;
-    }
 `
 
 export const AppointmentItem = styled.div`
@@ -33,8 +29,16 @@ export const AppointmentsTitleContainer = styled.div`
         align-items: center;
         color: black;
         position: absolute;
+        margin: 20px 60px;
+        background-color:#d3d3d3;
+        padding: 5px;
+        border-radius: 5px;
+        transition: 0.2s;
     }
 
+    img{
+        color: white;
+    }
     h1{
         position: ;
         margin-right: auto;

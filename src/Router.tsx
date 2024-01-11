@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
-import { Home } from "./pages/Home";
 import { DefaultLayout } from "./layouts/Default";
 import { Register } from "./pages/Register";
 import { Login } from "./pages/Login";
 import { Appointments } from "./pages/Appointments";
 import { NewAppointment } from "./pages/NewAppointment";
+import { Home } from "./pages/Home";
 
 export function Router() {
   return (
@@ -16,6 +16,6 @@ export function Router() {
           <Route path="/Appointments/:slug" element={<Appointments/>} />
           <Route path="/NewAppointment/:slug" element={<NewAppointment/>} />
         </Route>
-    </Routes>
+    </Routes> 
   )
 }

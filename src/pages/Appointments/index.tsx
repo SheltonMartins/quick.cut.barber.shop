@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
 import { useAppointment } from "../../graphql/hooks/useAppointment"
-import { AppointmentItem, AnyAppointmentsAdvice, AppointmentItens, AppointmentsContainer, AppointmentsTitleContainer } from "./style"
+import { AnyAppointmentsAdvice, AppointmentsContainer, AppointmentsTitleContainer } from "./style"
 import { Link, useParams } from "react-router-dom"
 import INCLUDE_ICON from "/plus-circle.svg"
+import { AppointmentItem } from "../../partials/AppointmentItem"
 
 export interface IAppointment{
     id?: string
@@ -46,7 +47,7 @@ export const Appointments = () => {
         <AppointmentsContainer>
             <AppointmentsTitleContainer>
                 <Link to={`/NewAppointment/${params.slug}`}>
-                    <img src={INCLUDE_ICON} alt="plus" />Novo compromisso
+                    Marcar compromisso<img src={INCLUDE_ICON} alt="plus" />
                 </Link>
             <h1>Compromissos agendados</h1>
             </AppointmentsTitleContainer>
@@ -57,21 +58,13 @@ export const Appointments = () => {
                     <Link to={`/NewAppointment/${params.slug}`}> clique aqui</Link>.
                 </AnyAppointmentsAdvice> }
             {Appointments.map(appointment => 
-                <AppointmentItens key={appointment.id}>
-                    <AppointmentItem>
-                        <label>Data: </label>{appointment.date}
-                    </AppointmentItem>
-                    <AppointmentItem>
-                        <label>Horario: </label>{appointment.time}
-                    </AppointmentItem>
-                    <AppointmentItem>
-                        <label>Criado no dia: </label>{appointment.createdAt}
-                    </AppointmentItem>
-                    <AppointmentItem>
-                        <label>Observações: </label>{appointment.name}
-                    </AppointmentItem>
-                </AppointmentItens>
-                )}
+                    <AppointmentItem 
+                        id={appointment.id}
+                        date={appointment.date}
+                        time={appointment.time}
+                        name={appointment.name} 
+                    />
+            )}
         </AppointmentsContainer>
     )
 }

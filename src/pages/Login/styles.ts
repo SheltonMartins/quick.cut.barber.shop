@@ -1,14 +1,23 @@
 import { styled } from 'styled-components'
 
 export const LoginContainer = styled.div`
-    width: 100%;
+    margin: 60px auto;
+    width: 30%;
+    height: 400px;
     display: flex;
+    align-items: center;
     justify-content: center;
     gap: 100px;
     padding-top: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
 
+    h2{
+        margin: 10px 0;
+        text-align: center;
+    }
     form{
-        width: 25%;
+        width: 80%;
 
     }
 
@@ -43,7 +52,7 @@ export const StyledLoginInput = styled.input`
 
 export const SubmitButton = styled.button`
     border: 1px solid red;
-    width: 150px;
+    width: 100%;
     height: 50px;
     margin: 10px 0;
     border-radius: 20px;

@@ -24,7 +24,7 @@ export const Login = () => {
             })
             console.log(data.login.token)
             sessionStorage.setItem('token', data.login.token)
-            navigate('/')
+            navigate(`/`)
           } catch (erro) {
             alert('deu erro')
           }
@@ -35,6 +35,7 @@ export const Login = () => {
     return (
         <LoginContainer >
             <form onSubmit={handleSubmit(handleCreateNewUser)} action="">
+              <h2>Faça login</h2>
             <label htmlFor="email">Email</label>
             <StyledLoginInput
                 title="Email" 
@@ -45,6 +46,7 @@ export const Login = () => {
             <StyledLoginInput 
                 title="Senha" 
                 placeholder="********" 
+                type="password"
                 {...register('password')}
             />
             <SubmitButton disabled={false} type="submit">Entrar</SubmitButton> 

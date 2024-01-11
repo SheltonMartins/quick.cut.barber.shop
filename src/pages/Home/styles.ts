@@ -5,7 +5,7 @@ export const HomeContainer = styled.div`
     padding: 30px;
     justify-content: center;
     gap: 50px;
-
+    margin-bottom: 10px;
 
     
     
