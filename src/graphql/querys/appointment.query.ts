@@ -11,3 +11,23 @@ mutation($usersId: String!){
   }
 }
 `
+export const ALL_APPOINTMENTS = gql`
+query{
+  allAppointments {
+    date
+    time
+  }
+}
+`
+
+export const REGISTER_APPOINTMENT = gql`
+mutation($barberId: String!, $userId: String!, $date: String!, $time: String!, $name: String!){
+  createAppointment(barberId: $barberId, userId: $userId, date: $date, time: $time, name: $name) {
+    id
+    date
+    time
+    name
+    createdAt
+  }
+}
+`

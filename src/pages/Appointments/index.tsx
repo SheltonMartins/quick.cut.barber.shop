@@ -4,14 +4,9 @@ import { AnyAppointmentsAdvice, AppointmentsContainer, AppointmentsTitleContaine
 import { Link, useParams } from "react-router-dom"
 import INCLUDE_ICON from "/plus-circle.svg"
 import { AppointmentItem } from "../../partials/AppointmentItem"
+import { IAppointment } from "../../interfaces/appointments"
 
-export interface IAppointment{
-    id?: string
-    name: string
-    time: string
-    date: string
-    createdAt: string
-}
+
 
 export const Appointments = () => {
     const [Appointments, setAppointment] = useState<IAppointment[]>([])
