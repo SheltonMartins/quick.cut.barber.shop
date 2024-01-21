@@ -3,15 +3,18 @@ import { gql } from '@apollo/client'
 export const ALL_BARBERS_WITH_APPOINTMENTS = gql`
 query{
   allBarbers {
-    barber {
-      id
-      name
-    }
-    appointments {
-      date
-      time
-      name
-      createdAt
+    data {
+      barber {
+        id
+        name
+      }
+      appointments {
+        id
+        date
+        time
+        name
+        createdAt
+      }
     }
   }
 }

@@ -6,3 +6,7 @@ import { IAppointment } from '../../interfaces/appointments'
 export function useAppointment() {
   return useMutation<{appointmentsById: IAppointment[]}>(APPOINTMENTS_USER)
 }
+
+export function useAppointmentByBarber() {
+  return useMutation<{appointmentsByBarber: IAppointment[]}>(APPOINTMENTS_USER)
+}

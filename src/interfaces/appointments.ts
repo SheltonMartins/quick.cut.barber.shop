@@ -4,10 +4,12 @@ export interface AllAppointmentsResponse {
 }
 
 export interface IAppointment{
-    barberId: string
+    barberId?: string
     userId?: string
+    id: string
     name: string
     time: string
     date: string
     createdAt: string
 }
+

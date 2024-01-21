@@ -10,13 +10,25 @@ export const NewAppointmentContainer = styled.div`
 
     form{
         width: 50%;
+
+        h2{
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
     }
 
 
 `
+export const OptionBarber = styled.option`
+    background-color: lightblue;
+    padding: 5px;
+    color: white;
+`
+
 
 export const RegisterSelect = styled.select`
-    border: 1px solid red;
+    border: 1px solid #ccc;
     height: 50px;
     width: 100%;
     background-color: transparent;
@@ -29,6 +41,8 @@ export const RegisterSelect = styled.select`
     transition: 0.5s;
     margin-top: 5px;
     margin-bottom: 15px;
+    overflow: hidden;
+    
 
     &::placeholder {
       font-style: italic;
@@ -39,7 +53,7 @@ export const RegisterSelect = styled.select`
 `
 
 export const RegisterInput = styled.input`
-    border: 1px solid red;
+    border: 1px solid #ccc;
     height: 50px;
     width: 100%;
     background-color: transparent;

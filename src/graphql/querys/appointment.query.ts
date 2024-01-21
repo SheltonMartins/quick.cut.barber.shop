@@ -31,3 +31,15 @@ mutation($barberId: String!, $userId: String!, $date: String!, $time: String!, $
   }
 }
 `
+
+export const APPOINTMENT_BARBER = gql`
+mutation($barberId: String!){
+  appointmentsByBarber(barberId: $barberId) {
+    id
+    date
+    time
+    name
+    createdAt
+  }
+}
+`

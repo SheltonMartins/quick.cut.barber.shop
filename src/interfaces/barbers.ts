@@ -1,17 +1,16 @@
-interface baber {
+import { IAppointment } from "./appointments"
+
+interface barber {
     id: string
     name: string
 }
 
-interface appointment {
-    date: string
-    time: string
-    name: string
-    createdAt: string
-}
-
-
 export interface AllBarbersWithAppointmentsResponse {
-    barber: baber[]
-    appointments: appointment[]
+    data: AllBarbersWithAppointmentsResponseData[]
 }
+
+export interface AllBarbersWithAppointmentsResponseData {
+    barber: barber
+    appointments: IAppointment[]
+}
+

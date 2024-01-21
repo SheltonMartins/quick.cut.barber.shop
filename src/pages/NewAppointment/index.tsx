@@ -1,15 +1,14 @@
 import { useNavigate, useParams } from "react-router-dom"
 import { useNewAppointment } from "../../graphql/hooks/useNewAppointment"
-import { NewAppointmentContainer, NewAppointmentWarnig, RegisterInput, RegisterSelect, SubmitButton } from "./styles"
+import { NewAppointmentContainer, NewAppointmentWarnig, OptionBarber, RegisterInput, RegisterSelect, SubmitButton } from "./styles"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as zod from "zod"
 import { useQuery } from "@apollo/client"
 import { useState } from "react"
-import { AllAppointmentsResponse, IAppointment } from "../../interfaces/appointments"
-import { AllBarbersIdResponse, AllBarbersWithAppointmentsResponse } from "../../interfaces/barbers"
-import { ALL_APPOINTMENTS } from "../../graphql/querys/appointment.query"
 import { ALL_BARBERS_WITH_APPOINTMENTS } from "../../graphql/querys/barbers/barbers.query"
+import { AllBarbersWithAppointmentsResponse } from "../../interfaces/barbers"
+import { IAppointment } from "../../interfaces/appointments"
 
 const NewAppointmentFormSchema = zod.object({
   name: zod.string()
@@ -25,7 +24,7 @@ const hoursOfDay = ["08:00", "09:00", "10:00", "11:00", "13:00", "14:00", "15:00
 "16:00", "17:00", "18:00"]
 
 export const NewAppointment = () => {
-    const {register, handleSubmit, formState: {errors}, watch } = useForm<IAppointment>({
+    const {register, handleSubmit, formState: {errors}, watch, setValue } = useForm<IAppointment>({
       resolver: zodResolver(NewAppointmentFormSchema),
     });
     const [appointment_response] = useNewAppointment();
@@ -34,32 +33,42 @@ export const NewAppointment = () => {
     const [avaliableHours, setAvaliableHours] = useState(["08:00", "09:00", "10:00", 
     "11:00", "13:00", "14:00", "15:00", 
     "16:00", "17:00", "18:00"]);
-    const [chosenBarber, setChosenBarber] = useState('');
+    const [chosenBarberId, setChosenBarberId] = useState('');
 
-    const { data } = useQuery<{ 
+    const { data, refetch } = useQuery<{ 
       allBarbers: AllBarbersWithAppointmentsResponse
     }>(ALL_BARBERS_WITH_APPOINTMENTS);
 
     const chosenDate = watch('date')
 
-    function checkAvaliableTimes (date: string)  {
+    function checkAvaliableTimes (date: string, barber: string)  {
+      console.log(date, barber)
       setAvaliableHours(hoursOfDay)
       const processedHours: string[] = [];
-      data?.allAppointments.forEach(appointment => {
-        if (appointment.date === date){
-          processedHours.push(appointment.time)
+
+      data?.allBarbers?.data?.map(d => {
+        console.log(d.barber.id)
+        console.log(barber)
+        if (d.barber.id == barber){
+          console.log(`Chegou no barbeiro selecionado: ${d.barber.name}, agora vamos excluir horarios indisponiveis.`)
+          d.appointments.map(appointment => {
+            if (appointment.date == date){
+              console.log(`Agora esta percorrendo os agendamentos do ${d.barber.name}`)
+              console.log(`Data do agendamento: ${appointment.date} e hora: ${appointment.time}`)
+              processedHours.push(appointment.time)
+            }
+          })
         }else{
-          console.log('Não entrou no if: data do comp'+appointment.date+' e data escolhida: '+date)
+          console.log('Nao Entrou: data do compromisso  e data escolhida: ')
         }
       })
-          setAvaliableHours(prevAvaliableHours => {
-            return prevAvaliableHours.filter(h => !processedHours.includes(h));
-          });
+      setAvaliableHours(prevAvaliableHours => {
+        return prevAvaliableHours.filter(h => !processedHours.includes(h));
+      });
     }
 
 
     async function handleCreateNewAppointment(args: IAppointment) {
-      console.log(args.barberId)
         try {
             const { data } = await appointment_response({
               variables: {
@@ -69,19 +78,15 @@ export const NewAppointment = () => {
                 time: args.time,
                 date: args.date,
               },
-            })
-            console.log(data?.createAppointment)
+            });
+            setValue('date', '')
             alert(`Compromisso criado dia ${data?.createAppointment.date}`)
+            await refetch();
             navigate(`/Appointments/${params.slug}`)
           } catch (erro) {
-            alert(`deu erro ${erro}`)
-            console.log(erro)
+            alert(`Erro ${erro}`)
           }
     }
-
-    console.log(data)
-
-
     return (
         <NewAppointmentContainer >
             <form onSubmit={handleSubmit(handleCreateNewAppointment)} action="">
@@ -90,13 +95,17 @@ export const NewAppointment = () => {
             {/* {errors.name && <NewAppointmentWarnig>{errors.name.message}</NewAppointmentWarnig>} */}
             <RegisterSelect
               title="barberId"
-              {...register('barberId')} 
+              {...register('barberId')}
             >
-              {data?.allBarbers?.barber?.map(o => 
-                <option 
-                  key={o.id} 
-                  onChange={}>{o.name}
-                </option>)}
+              <option value="" disabled selected>Selecione um de nossos barbeiros</option>
+              {data?.allBarbers.data.map(o => 
+                <OptionBarber
+                  value={o.barber.id} 
+                  key={o.barber.id}
+                  onClick={() => setChosenBarberId(o.barber.id)}
+                >{o.barber.name}
+                </OptionBarber>)
+              }
             </RegisterSelect>
 
             <label htmlFor="date">Data</label>
@@ -105,8 +114,7 @@ export const NewAppointment = () => {
                 title="Data" 
                 type="date" 
                 {...register('date', {
-                  onBlur: () => checkAvaliableTimes(chosenDate),
-                  // onChange: () => (aoAlterado),
+                  onBlur: () => checkAvaliableTimes(chosenDate, chosenBarberId),
                 })}
             />
             <label htmlFor="time">Hora</label>
