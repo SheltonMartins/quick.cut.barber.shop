@@ -1,30 +1,30 @@
-# React + TypeScript + Vite
+# Frontend Cadastro Barbearia
+## Descrição
+Este é o meu projeto autoral, onde desenvolvi uma funcionalidade para selecionar barbeiros e filtrar horários disponíveis no dia escolhido. Utilizei tecnologias como React, GraphQL, Apollo Client e Styled Components
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Funcionalidades
+- Seleção de barbeiros
+- Filtro de horários disponíveis
+- Adicionar usuários
+- Agendamentos
 
-Currently, two official plugins are available:
+## Tecnologias Utilizadas
+[![My Skills](https://skillicons.dev/icons?i=ts,react,graphql,styledcomponents,apollo)](https://skillicons.dev)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## Instalação
+1. Clone o repositório: `https://github.com/SheltonMartins/quick.cut.barber.shop`
+2. Entre no diretório: `cd quick.cut.barber.shop`
+3. Instale as dependências: `npm install`
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Como Usar
+1. Inicie o aplicativo: `npm run dev`
+2. Acesse o aplicativo em [http://localhost:****](http://localhost:****)
 
-- Configure the top-level `parserOptions` property like this:
+## Contribuição
+Contribuições são bem-vindas! Sinta-se à vontade para abrir um problema ou enviar um pull request.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Contato
+- Autor: Shelton Martins Lucas
+- Email: sheltonmartinslucas@gmail.com
+- LinkedIn: [Seu Perfil](https://www.linkedin.com/in/shelton-martins/)
